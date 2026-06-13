@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pool Villa 5+ ห้องนอน | 20 มิ.ย. 2569 | ฿15,000</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f4ff; color: #222; }
+    .header { background: linear-gradient(135deg, #0068ff, #0055cc); color: white; padding: 20px; text-align: center; }
+    .header h1 { font-size: 20px; margin-bottom: 4px; }
+    .header p { font-size: 13px; opacity: 0.9; }
+    .badge { display: inline-block; background: rgba(255,255,255,0.25); border-radius: 20px; padding: 2px 10px; font-size: 12px; margin-top: 6px; }
+    .filters { padding: 12px; background: white; border-bottom: 1px solid #e0e0e0; position: sticky; top: 0; z-index: 10; }
+    .filters select { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; }
+    .summary { padding: 12px 16px; font-size: 13px; color: #555; background: #eef2ff; }
+    .card { background: white; margin: 10px 16px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); overflow: hidden; }
+    .card-top { padding: 14px 16px 10px; border-left: 4px solid #0068ff; }
+    .card-top .id { font-size: 11px; color: #888; font-weight: 600; letter-spacing: 0.5px; }
+    .card-top .price { font-size: 20px; color: #0068ff; font-weight: 700; float: right; }
+    .card-top .name { font-size: 15px; font-weight: 600; color: #111; margin-top: 2px; }
+    .card-specs { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 16px; }
+    .spec { background: #f5f7ff; border-radius: 6px; padding: 4px 10px; font-size: 12px; color: #333; }
+    .spec strong { color: #0055cc; }
+    .card-beds { padding: 8px 16px; font-size: 12px; color: #666; }
+    .card-link { display: block; background: #0068ff; color: white; text-align: center; padding: 12px; text-decoration: none; font-size: 14px; font-weight: 600; border-radius: 0 0 12px 12px; }
+    .card-link:hover { background: #0055cc; }
+    .footer { text-align: center; padding: 24px; font-size: 12px; color: #aaa; }
+    .top-pick { border-left-color: #ff6b00; }
+    .top-pick .card-top .price { color: #ff6b00; }
+    .section-title { padding: 14px 16px 6px; font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+    .pool-salt { color: #00875a; }
+    .pool-chlor { color: #0055cc; }
+    .pool-none { color: #888; }
+    .highlight { background: #fff8f0; }
+    @media (max-width: 480px) {
+      .card { margin: 8px 10px; }
+      .header h1 { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏊 Pool Villa พัทยา</h1>
+  <p>5+ ห้องนอน | ว่าง วันเสาร์ที่ 20 มิ.ย. 2569</p>
+  <p>งบ <= 15,000 บาท/คืน</p>
+  <span class="badge">รวม 23 ตัวเลือก</span>
+</div>
+
+<div class="filters">
+  <select id="poolFilter" onchange="filterCards()">
+    <option value="all">ทั้งหมด (ทุกประเภทสระ)</option>
+    <option value="เกลือ">ระบบเกลือ</option>
+    <option value="คลอรีน">ระบบคลอรีน</option>
+    <option value="none">ไม่ระบุ</option>
+  </select>
+</div>
+
+<div class="summary" id="summary">แสดง <span id="count">23</span> ตัวเลือก</div>
+
+<!-- TOP PICKS -->
+<div class="section-title">⭐ แนะนำ — คุ้มสุด</div>
+
+<div class="card top-pick highlight" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-28 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿9,900</div>
+    <div class="name">Pool Villa 5 ห้องนอน รับได้ 21 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>10</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>21</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <div class="card-beds">🏠 ห้องนอน: เตียง 6 ฟุต 2 เตียง | เตียง 5 ฟุต 1 เตียง | ห้องน้ำในตัว</div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/28">ดูรายละเอียด →</a>
+</div>
+
+<div class="card top-pick highlight" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-129 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿9,900</div>
+    <div class="name">Pool Villa 5 ห้องนอน รับได้ 20 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>11</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>20</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <div class="card-beds">🏠 11 เตียง (เยอะสุดในกลุ่ม 9,900)</div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/129">ดูรายละเอียด →</a>
+</div>
+
+<div class="card top-pick highlight" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-1842 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿9,900</div>
+    <div class="name">Pool Villa 5 ห้องนอน รับได้ 15 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>10</strong> เตียง</span>
+    <span class="spec"><strong>3</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>15</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/1842">ดูรายละเอียด →</a>
+</div>
+
+<!-- 10,000-11,900 -->
+<div class="section-title">💰 ฿10,000 - ฿11,900</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-510 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿10,900</div>
+    <div class="name">รับได้ 25 คน — เยอะสุดในกลุ่มนี้</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>5</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>25</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/510">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="เกลือ">
+  <div class="card-top">
+    <div class="id">DV-1903 · 5 ห้องนอน · ระบบเกลือ</div>
+    <div class="price">฿10,900</div>
+    <div class="name">รับได้ 15 คน — สระเกลือ</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>10</strong> เตียง</span>
+    <span class="spec"><strong>2</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>15</strong> คน</span>
+    <span class="spec pool-salt">ระบบเกลือ</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/1903">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-323 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿11,900</div>
+    <div class="name">12 เตียง รับ 20 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>12</strong> เตียง</span>
+    <span class="spec"><strong>3</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>20</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/323">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-399 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿11,900</div>
+    <div class="name">10 เตียง รับ 25 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>10</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>25</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/399">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="เกลือ">
+  <div class="card-top">
+    <div class="id">DV-1361 · 5 ห้องนอน · ระบบเกลือ</div>
+    <div class="price">฿11,900</div>
+    <div class="name">รับ 17 คน — สระเกลือ</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>5</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>17</strong> คน</span>
+    <span class="spec pool-salt">ระบบเกลือ</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/1361">ดูรายละเอียด →</a>
+</div>
+
+<!-- 12,000-14,900 -->
+<div class="section-title">💰 ฿12,000 - ฿14,900</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-335 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿13,900</div>
+    <div class="name">11 เตียง / 7 ห้องน้ำ รับ 15 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>11</strong> เตียง</span>
+    <span class="spec"><strong>7</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>15</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/335">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-726 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿13,900</div>
+    <div class="name">รับ 18 คน / 6 ห้องน้ำ</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec">5 ห้องนอน</span>
+    <span class="spec"><strong>6</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>18</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/726">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-1461 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿13,900</div>
+    <div class="name">10 เตียง / 7 ห้องน้ำ รับ 15 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>10</strong> เตียง</span>
+    <span class="spec"><strong>7</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>15</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/1461">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-1507 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿13,900</div>
+    <div class="name">รับ 25 คน — เยอะสุดในกลุ่มนี้</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>5</strong> ห้องนอน</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>25</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/1507">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="เกลือ">
+  <div class="card-top">
+    <div class="id">DV-1929 · 5 ห้องนอน · ระบบเกลือ</div>
+    <div class="price">฿13,900</div>
+    <div class="name">รับ 20 คน — สระเกลือ</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>10</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>20</strong> คน</span>
+    <span class="spec pool-salt">ระบบเกลือ</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/1929">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="เกลือ">
+  <div class="card-top">
+    <div class="id">DV-25 · 6 ห้องนอน · ระบบเกลือ</div>
+    <div class="price">฿13,900</div>
+    <div class="name">6 ห้องนอน รับ 25 คน — สระเกลือ</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>6</strong> ห้องนอน</span>
+    <span class="spec"><strong>10</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>25</strong> คน</span>
+    <span class="spec pool-salt">ระบบเกลือ</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/25">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-44 · 6 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿14,900</div>
+    <div class="name">7 เตียง / 7 ห้องน้ำ รับ 19 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>6</strong> ห้องนอน</span>
+    <span class="spec"><strong>7</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>19</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/44">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-45 · 6 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿14,900</div>
+    <div class="name">14 เตียง / 7 ห้องน้ำ รับ 19 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>6</strong> ห้องนอน</span>
+    <span class="spec"><strong>14</strong> เตียง</span>
+    <span class="spec"><strong>7</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>19</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/45">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-272 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿14,900</div>
+    <div class="name">รับ 17 คน / 4 ห้องน้ำ</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>5</strong> ห้องนอน</span>
+    <span class="spec"><strong>4</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>17</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/272">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-271 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿14,900</div>
+    <div class="name">11 เตียง รับ 15 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>11</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>15</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/271">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-432 · 5 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿14,900</div>
+    <div class="name">10 เตียง รับ 12 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>10</strong> เตียง</span>
+    <span class="spec"><strong>5</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>12</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/432">ดูรายละเอียด →</a>
+</div>
+
+<!-- 6+ bed -->
+<div class="section-title">🏠 6 ห้องนอนขึ้นไป</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-459 · 8 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿14,900</div>
+    <div class="name">16 เตียง รับ 24 คน — คุ้มสุดในกลุ่มใหญ่</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>8</strong> ห้องนอน</span>
+    <span class="spec"><strong>16</strong> เตียง</span>
+    <span class="spec"><strong>8</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>24</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/459">ดูรายละเอียด →</a>
+</div>
+
+<div class="card" data-pool="คลอรีน">
+  <div class="card-top">
+    <div class="id">DV-1841 · 8 ห้องนอน · ระบบคลอรีน</div>
+    <div class="price">฿14,900</div>
+    <div class="name">16 เตียง รับ 20 คน</div>
+  </div>
+  <div class="card-specs">
+    <span class="spec"><strong>8</strong> ห้องนอน</span>
+    <span class="spec"><strong>16</strong> เตียง</span>
+    <span class="spec"><strong>6</strong> ห้องน้ำ</span>
+    <span class="spec">รับ <strong>20</strong> คน</span>
+    <span class="spec pool-chlor">ระบบคลอรีน</span>
+  </div>
+  <a class="card-link" href="https://www.pattayapartypoolvilla.com/v/1841">ดูรายละเอียด →</a>
+</div>
+
+<div class="footer">
+  ข้อมูลจาก pattayapartypoolvilla.com · ดึงข้อมูล 20 มิ.ย. 2569<br>
+  ราคาอาจเปลี่ยนแปลง · ควรตรวจสอบที่เว็บอีกครั้งก่อนจอง
+</div>
+
+<script>
+function filterCards() {
+  var pool = document.getElementById('poolFilter').value;
+  var cards = document.querySelectorAll('.card[data-pool], div[class="section-title"]');
+  var sections = document.querySelectorAll('.section-title');
+  var count = 0;
+  
+  // Show/hide cards
+  document.querySelectorAll('.card[data-pool]').forEach(function(card) {
+    var p = card.getAttribute('data-pool');
+    if (pool === 'all' || p === pool) {
+      card.style.display = '';
+      count++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  
+  // Show/hide section titles based on visible cards
+  sections.forEach(function(sec) {
+    var next = sec.nextElementSibling;
+    var hasVisible = false;
+    while (next && !next.classList.contains('section-title')) {
+      if (next.style.display !== 'none' && next.hasAttribute('data-pool')) hasVisible = true;
+      next = next.nextElementSibling;
+    }
+    sec.style.display = hasVisible ? '' : 'none';
+  });
+  
+  document.getElementById('count').textContent = count;
+}
+</script>
+
+</body>
+</html>
