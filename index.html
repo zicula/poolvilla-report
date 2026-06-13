@@ -3,688 +3,195 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pool Villa 5+ ห้องนอน | ≤฿15,000 | 20 มิถุนายน 2569</title>
+<title>Pool Villa — พัทยา | Filter</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f1923; color: #e8eaed; min-height: 100vh; padding: 20px; }
-.header { text-align: center; margin-bottom: 30px; }
-.header h1 { font-size: 28px; color: #00d4aa; margin-bottom: 8px; }
-.header .subtitle { color: #888; font-size: 14px; }
-.filters { display: flex; justify-content: center; gap: 20px; margin-bottom: 25px; flex-wrap: wrap; }
-.filter { background: #1a2332; border: 1px solid #2a3a4a; border-radius: 8px; padding: 10px 20px; font-size: 13px; }
-.filter span { color: #00d4aa; font-weight: bold; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; max-width: 1400px; margin: 0 auto; }
-.card { background: #1a2332; border: 1px solid #2a3a4a; border-radius: 12px; overflow: hidden; transition: transform 0.2s; }
-.card:hover { transform: translateY(-3px); border-color: #00d4aa; }
-.card-top { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px 10px; }
-.villa-id { font-size: 13px; color: #00d4aa; font-weight: bold; }
-.villa-id a { color: #00d4aa; text-decoration: none; }
-.villa-id a:hover { text-decoration: underline; }
-.price { font-size: 22px; font-weight: bold; color: #ff6b6b; }
-.price-label { font-size: 11px; color: #888; }
-.card-location { padding: 0 18px 10px; font-size: 13px; color: #888; }
-.card-location span { color: #aaa; }
-.card-beds { display: flex; gap: 15px; padding: 0 18px 12px; }
-.badge { background: #2a3a4a; border-radius: 6px; padding: 5px 10px; font-size: 12px; }
+body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0f1923; color: #e8eaed; min-height: 100vh; padding: 20px; }
+.container { max-width: 1300px; margin: 0 auto; }
+
+.header { text-align: center; margin-bottom: 24px; }
+.header h1 { font-size: 26px; color: #00d4aa; }
+.header .sub { color: #666; font-size: 13px; margin-top: 4px; }
+
+.controls { background: #1a2332; border: 1px solid #2a3a4a; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+.controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.ctrl { display: flex; flex-direction: column; gap: 6px; }
+.ctrl label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+.ctrl input[type="range"] { width: 100%; accent-color: #00d4aa; cursor: pointer; }
+.ctrl .range-val { font-size: 18px; font-weight: bold; color: #00d4aa; }
+.ctrl .range-hint { font-size: 11px; color: #555; }
+.ctrl select, .ctrl input[type="date"] { background: #151d28; border: 1px solid #2a3a4a; border-radius: 8px; color: #e8eaed; padding: 8px 12px; font-size: 14px; }
+.ctrl input[type="date"] { color-scheme: dark; }
+
+.stats { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
+.stat { background: #151d28; border-radius: 8px; padding: 8px 16px; font-size: 13px; }
+.stat strong { color: #00d4aa; }
+.stat.none strong { color: #ff6b6b; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; }
+.card { background: #1a2332; border: 1px solid #2a3a4a; border-radius: 12px; overflow: hidden; transition: transform 0.15s, border-color 0.15s; }
+.card:hover { transform: translateY(-2px); border-color: #3a4a5a; }
+.card.no-price { opacity: 0.6; }
+
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 16px 8px; }
+.id { font-size: 12px; color: #00d4aa; font-weight: bold; }
+.id a { color: #00d4aa; text-decoration: none; }
+.id a:hover { text-decoration: underline; }
+.vid { font-size: 10px; color: #444; margin-top: 1px; }
+.price { font-size: 20px; font-weight: bold; color: #ff6b6b; text-align: right; }
+.price-label { font-size: 10px; color: #555; }
+.no-price-tag { font-size: 12px; color: #555; background: #2a3a4a; border-radius: 4px; padding: 2px 6px; }
+
+.loc { padding: 0 16px 8px; font-size: 12px; color: #777; }
+.badges { display: flex; gap: 6px; padding: 0 16px 10px; flex-wrap: wrap; }
+.badge { background: #2a3a4a; border-radius: 6px; padding: 4px 9px; font-size: 12px; }
 .badge strong { color: #fff; }
-.badge-unit { color: #888; font-size: 11px; }
-.divider { border: none; border-top: 1px solid #2a3a4a; margin: 0 18px 12px; }
-.bed-section { padding: 0 18px 16px; }
-.bed-title { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-.bed-list { display: flex; flex-direction: column; gap: 4px; }
-.bed-room { font-size: 12px; color: #ccc; padding: 4px 8px; background: #151d28; border-radius: 4px; }
-.bed-room .room-num { color: #00d4aa; font-weight: 600; margin-right: 6px; }
-.card-footer { padding: 12px 18px; background: #151d28; border-top: 1px solid #2a3a4a; }
-.card-footer a { color: #00d4aa; text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 6px; }
-.card-footer a:hover { text-decoration: underline; }
-.book-btn { display: inline-block; background: #00d4aa; color: #0f1923 !important; font-weight: bold; padding: 8px 16px; border-radius: 6px; text-decoration: none; margin-top: 8px; font-size: 13px !important; }
+.badge .u { color: #888; font-size: 10px; }
+
+.divider { border: none; border-top: 1px solid #1e2a38; margin: 0 16px 10px; }
+.beds { padding: 0 16px 12px; }
+.beds-title { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+.bed-line { font-size: 11px; color: #aaa; padding: 2px 6px; background: #151d28; border-radius: 3px; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; display: block; }
+
+.footer { padding: 10px 16px; background: #151d28; border-top: 1px solid #1e2a38; }
+.footer a { color: #00d4aa; text-decoration: none; font-size: 12px; }
+.footer a:hover { text-decoration: underline; }
+.book-btn { display: inline-block; background: #00d4aa; color: #0f1923 !important; font-weight: bold; padding: 6px 14px; border-radius: 6px; text-decoration: none; margin-top: 6px; font-size: 12px !important; }
 .book-btn:hover { background: #00eebb !important; text-decoration: none !important; }
-.note { text-align: center; color: #555; font-size: 12px; margin-top: 30px; padding: 15px; }
+
+.no-results { text-align: center; padding: 60px; color: #555; font-size: 15px; }
+.no-results span { display: block; font-size: 40px; margin-bottom: 10px; }
+
+.note { text-align: center; color: #444; font-size: 11px; margin-top: 30px; padding: 10px; }
+
+.pop { animation: popIn 0.2s ease; }
+@keyframes popIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>🏊 Pool Villa — พัทยา</h1>
-  <div class="subtitle">5+ ห้องนอน · ≤฿15,000/2 คืน · เช็คอิน 20 มิถุนายน 2569</div>
+<div class="container">
+  <div class="header">
+    <h1>🏊 Pool Villa — พัทยา</h1>
+    <div class="sub">กรองที่พักตามเงื่อนไข · ราคาจาก pattayapartypoolvilla.com</div>
+  </div>
+
+  <div class="controls">
+    <div class="controls-grid">
+      <div class="ctrl">
+        <label>💰 ราคา (2 คืน) — ไม่เกิน</label>
+        <input type="range" id="priceMax" min="3000" max="30000" step="500" value="30000">
+        <div class="range-val" id="priceVal">฿30,000</div>
+        <div class="range-hint">เลื่อนเพื่อเลือกงบสูงสุด</div>
+      </div>
+      <div class="ctrl">
+        <label>🛏️ ห้องนอน — อย่างน้อย</label>
+        <input type="range" id="bedMin" min="1" max="16" step="1" value="1">
+        <div class="range-val" id="bedVal">≥ 1 ห้อง</div>
+        <div class="range-hint">จำนวนห้องนอนขั้นต่ำ</div>
+      </div>
+      <div class="ctrl">
+        <label>🚿 ห้องน้ำ — อย่างน้อย</label>
+        <input type="range" id="bathMin" min="1" max="17" step="1" value="1">
+        <div class="range-val" id="bathVal">≥ 1 ห้อง</div>
+        <div class="range-hint">จำนวนห้องน้ำขั้นต่ำ</div>
+      </div>
+      <div class="ctrl">
+        <label>📅 เช็คอิน</label>
+        <input type="date" id="checkIn">
+        <div class="range-hint">เลือกวันที่ต้องการ</div>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
 </div>
 
-<div class="filters">
-  <div class="filter">🛏️ ห้องนอน: <span>≥5</span></div>
-  <div class="filter">💰 ราคา: <span>≤฿15,000</span> (2 คืน)</div>
-  <div class="filter">📅 เช็คอิน: <span>20 มิ.ย. 2569</span></div>
-  <div class="filter">🔍 ทั้งหมด: <span>25 ที่พัก</span></div>
-</div>
+<script>
+const VILLAS = [{"id": "DV-28", "vid": 28, "bed": 5, "bath": 5, "guests": 21, "location": "อ่างเก็บน้ำมาบประชัน", "price": 5900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ห้องนอนที่ 1 เตียง 6 ฟุต 2 เตียง/เตียง 5 ฟุต 1 เตียง ห้องน้ำในตัว", "ห้องนอนที่ 2 เตียง 6 ฟุต ห้องน้ำในตัว", "ห้องนอนที่ 3 เตียง 6 ฟุต 1 เตียง / 3.5 ฟุต 1 เตียง ห้องน้ำในตัว", "ห้องนอนที่ 4 เตียง 5 ฟุต (ห้องนอนอยู่โซนด้านหน้าบ้าน)", "ห้องนอนที่ 5 เตียง 5 ฟุต ห้องน้ำในตัว (ห้องนอนอยู่บริเวณโรงจอดรถ)", "- ห้องนอนที่ 3 ติดสระ", "-ไม่มีเตาหมูกระทะ หม้อชาบู", "ค่าใช้จ่ายเพิ่มเติม"]}, {"id": "DV-129", "vid": 129, "bed": 5, "bath": 5, "guests": 20, "location": "หาดจอมเทียน", "price": 5900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["- ห้องที่ 1 เตียง 6 ฟุต 1 เตียง ห้องน้ำในตัว", "- ห้องที่ 2 เตียง 6 ฟุต 1 เตียง ห้องน้ำในตัว", "- ห้องที่ 3 เตียง 6 ฟุต 1 เตียง 3.5 ฟุต 1 เตียง ห้องน้ำในตัว", "- ห้องที่ 4 เตียง 5 ฟุต 2 เตียง", "- ห้องที่ 5 เตียง 5 ฟุต 2 เตียง", "- มีห้องน้ำรวม 2 ห้อง", "อุปกรณ์ครัวทั่วไป ครบ", "- มีด,จาน,ถ้วย,ช้อนซ้อม,กระทะ,หม้อ,ครก"]}, {"id": "DV-716", "vid": 716, "bed": 5, "bath": 5, "guests": 20, "location": "หาดจอมเทียน", "price": 10900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["เสริมได้ถึง 20 ครับ แต่ เกิน 17 อาจจะเบียดหน่อย", "ห้อง 1-3 มี เตียง6 ฟุต 1 เตียง+ เตียง 3.5 ฟุต 1 เตียง", "ห้อง 4 มีเตียง 6 ฟุต 1 เตียง", "ห้อง 5 มีเตียง 5 ฟุต 2 เตียง", "ห้องน้ำในตัวทุกห้อง ห้องนั่งเล่นใช้ห้องน้ำร่วมกับห้องนอน", "และมีห้องน้ำด้านนอกอีก 1 ห้อง เป็นห้องน้ำส่วนกลาง", "ค่าใช้จ่ายเพิ่มเติม", "น้ำแข็ง 10 กก. ถุงละ 60 บาท"]}, {"id": "DV-726", "vid": 726, "bed": 5, "bath": 6, "guests": 18, "location": "หาดกระทิงลาย", "price": 9900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ห้อง 1 ข้างสระ 6ฟุต1 3ฟุตครึ่ง1", "ห้อง 2 ชั้นล่าง 6ฟุต1 3ฟุตครึ่ง 1", "ห้องใหญ่ที่3ชั้นบน 6ฟุต1 3ฟุตครึ่ง 2", "ห้องกลางที่4 6ฟุต 1 3ฟุตครึ่ง 1", "ห้องที่5สุดท้ายชั้นบน 6ฟุต1 3ฟุตครึ่ง1", "-มีห้องน้ำในตัวทุกห้อง-", "อุปกรณ์ครัวมีครบ", "หม้อทอดไร้น้ำมัน"]}, {"id": "DV-728", "vid": 728, "bed": 9, "bath": 10, "guests": 40, "location": "หาดจอมเทียน", "price": 24900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-729", "vid": 729, "bed": 8, "bath": 8, "guests": 50, "location": "อ่างเก็บน้ำมาบประชัน", "price": 11900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["-ห้องนอนที่ 1 มีเตียง 6 ฟุต 1 เตียง", "-ห้องนอนที่ 2 มีเตียง 6 ฟุต 1 เตียง", "-ห้องนอนที่ 3 มีเตียง 6 ฟุต 1 เตียง", "-ห้องนอนที่ 4 มีเตียง 6 ฟุต 1 เตียง", "-ห้องนอนที่ 5 มีเตียง 6 ฟุต 1 เตียง", "-ห้องนอนที่ 6 มีเตียง 6 ฟุต 1 เตียง", "-ห้องนอนที่ 7 มีเตียง 6 ฟุต 1 เตียง", "-ห้องนอนที่ 8 มีเตียง 6 ฟุต 1 เตียง"]}, {"id": "DV-762", "vid": 762, "bed": 10, "bath": 11, "guests": 28, "location": "ตรงข้ามหาดพัทยากลาง", "price": 15900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-791", "vid": 791, "bed": 6, "bath": 7, "guests": 30, "location": "ตรงข้ามหาดนาจอมเทียน", "price": 15900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-801", "vid": 801, "bed": 8, "bath": 8, "guests": 40, "location": "ตรงข้ามหาดพัทยาเหนือ", "price": 22900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-809", "vid": 809, "bed": 5, "bath": 4, "guests": 20, "location": "ตรงข้ามหาดกระทิงลาย", "price": 7900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["- ห้องนอนที่ 1 ( เตียง6 ฟุต 1 เตียง , เตียง 5 ฟุต 2 เตียง ห้องนี้เสริมที่นอนได้ 2 ท่าน มีห้องน้ำในตัว และมีอ่างอาบน้ำ วิวสระว่ายน้ำ)", "- ห้องนอนที่ 2 (เตียง 5 ฟุต 1 เตียง ห้องน้ำส่วนกลาง)", "- ห้องนอนที่ 3 ( เตียง 6 ฟุต 1 เตียง เตียง 5 ฟุต 1 เตียง มีห้องน้ำในตัว วิวสระว่ายน้ำ )", "- ห้องนอนที่ 4 และ 5 ( จะอยู่หน้าบ้าน", "มีเตียง 5 ฟุต ห้องละ 1 เตียง ห้องน้ำใช้ด้านนอก )", "อุปกรณ์ครัวครบครัน", "หม้อ กะทะ แก้ว ชาม"]}, {"id": "DV-829", "vid": 829, "bed": 4, "bath": 5, "guests": 15, "location": "เขาใหญ่", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-830", "vid": 830, "bed": 4, "bath": 5, "guests": 15, "location": "เขาใหญ่", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-835", "vid": 835, "bed": 4, "bath": 4, "guests": 12, "location": "หาดเขาพระตำหนัก", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-841", "vid": 841, "bed": 4, "bath": 4, "guests": 12, "location": "ตรงข้ามหาดจอมเทียน", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-842", "vid": 842, "bed": 4, "bath": 3, "guests": 15, "location": "หาดบ้านอำเภอ", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-846", "vid": 846, "bed": 4, "bath": 4, "guests": 18, "location": "ตรงข้ามหาดนาจอมเทียน", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-849", "vid": 849, "bed": 7, "bath": 9, "guests": 27, "location": "หาดปราญบุรี", "price": 17900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-855", "vid": 855, "bed": 6, "bath": 7, "guests": 25, "location": "หาดจอมเทียน", "price": 22900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-859", "vid": 859, "bed": 5, "bath": 4, "guests": 20, "location": "ตรงข้ามหาดพัทยากลาง", "price": 7900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ห้องนอนที่ 1 6ฟุต 1 เตียง 2 ท่าน (มีห้องน้ำในตัว) ชั้นบน", "ห้องนอนที่ 2 6ฟุต 1 เตียง 2 ท่าน (มีห้องน้ำในตัว) ชั้นบน", "ห้องนอนที่ 3 6ฟุต 1 เตียง 2 ท่าน (มีห้องน้ำในตัว) ชั้นบน", "ห้องนอนที่ 4 6ฟุต 2 เตียง 4 ท่าน (ไม่มีห้องน้ำในตัวในกับห้องโถ่ง) ชั้นบน", "-ห้องที่ 5 อยู่ข้างล่าง", "เตียง5ฟุต 2เตียง ใช้ห้องน้ำกับห้องรับแขก (ไม่มีห้องน้ำในตัวในกับห้องโถ่ง) ชั้นล่าง", "ภายในห้องสามารถเสริมฟุกได้อีก", "อุปกรณ์ห้องครัว"]}, {"id": "DV-1842", "vid": 1842, "bed": 5, "bath": 3, "guests": 15, "location": "หาดบางเสร่", "price": 7900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ห้องที่ 1 เตียง 6 ฟุต 1 เตียง", "ห้องน้ำในตัว", "ห้องที่ 2 เตียง 6 ฟุต 1 เตียง", "ใช้ห้องน้ำกับห้องโถง", "ห้องที่ 3 เตียง 6 ฟุต 1 เตียง", "ใช้ห้องน้ำกับห้องโถง", "ห้องที่ 4 เตียง 6 ฟุต 1 เตียง", "ใช้ห้องน้ำตรงสระ"]}, {"id": "DV-1653", "vid": 1653, "bed": 4, "bath": 3, "guests": 15, "location": "ตรงข้ามหาดบ้านอำเภอ", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-2019", "vid": 2019, "bed": 4, "bath": 2, "guests": 15, "location": "ห่างทะเล 3.6 กม.", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-1977", "vid": 1977, "bed": 3, "bath": 3, "guests": 10, "location": "ตรงข้ามหาดนาจอมเทียน", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-9", "vid": 9, "bed": 6, "bath": 6, "guests": 24, "location": "ตรงข้ามหาดนาจอมเทียน", "price": 9900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ชั้นล่าง มี 1 ห้องนอน", "ห้องนอนที่ 1", "-เตียงขนาด 6 ฟุต 2 เตียง", "-ห้องน้ำหน้าห้องนอน", "ชั้นบน มี 5 ห้องนอน", "ห้องนอนที่ 2", "-เตียงขนาด 6 ฟุต 1 เตียง", "-ห้องน้ำในตัว"]}, {"id": "DV-25", "vid": 25, "bed": 6, "bath": 5, "guests": 25, "location": "ตรงข้ามหาดพัทยากลาง", "price": 6900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ห้องนอนที่ 1,2 อยู่ชั้น2 : เตียง 6ฟุต 2เตียง+ห้องน้ำในตัว+ห้องแต่งตัว(ใช้ร่วมกัน)+ระเบียง", "ห้องนอนที่ 3 อยู่ชั้น2: เตียง 6ฟุต 1 เตียง +ห้องน้ำในตัว +ระเบียง", "ห้องนอนที่ 4อยู่ชั้น2 : เตียง 6ฟุต 1 เตียง +ห้องน้ำในตัว+ระเบียง", "ห้องนอนที่ 5อยู่ชั้น1: เตียง 6ฟุต 1 เตียง +ห้องน้ำในตัว", "ห้องนอนที่ 6อยู่ชั้นล่าง: เตียง 5 ฟุต 1 เตียง+ห้องน้ำในตัว"]}, {"id": "DV-42", "vid": 42, "bed": 7, "bath": 8, "guests": 22, "location": "ตรงข้ามหาดพัทยากลาง", "price": 9900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ชั้นล่าง", "-ห้องที่ 1 เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 2 เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 3 เตียง 3.5 ฟุต 2 เตียง", "ชั้นบน", "-ห้องที่ 4 เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 5 เตียง 3.5 ฟุต 1 เตียง", "เตียง 6 ฟุต 1 เตียง"]}, {"id": "DV-43", "vid": 43, "bed": 7, "bath": 8, "guests": 22, "location": "ตรงข้ามหาดพัทยากลาง", "price": 9900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["-ห้องที่ 1 เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 2 เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 3 เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 4 เตียง 3.5 ฟุต 2 เตียง", "-ห้องที่ 5 เตียง 3.5 ฟุต 2 เตียง", "-ห้องที่ 6 เตียง 3.5 ฟุต 1 เตียง", "เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 7 เตียง 6 ฟุต 1 เตียง"]}, {"id": "DV-44", "vid": 44, "bed": 6, "bath": 7, "guests": 19, "location": "ตรงข้ามหาดพัทยากลาง", "price": 8900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ชั้น 1 มี 2 ห้อง", "ห้อง 1 : 6 ฟุต 1 เตียง ห้องน้ำในตัว", "ห้อง 2 : 6 ฟุต 1 เตียง ห้องน้ำในตัว", "ชั้น 2 มี 4 ห้อง", "ห้อง 3 : 3.5 ฟุต 2 เตียง ห้องน้ำในตัว", "ห้อง 4 : 3.5 ฟุต 2 เตียง ห้องน้ำในตัว", "ห้อง 5 : 3.5 ฟุต 1 เตียง+6 ฟุต 1เตียง ห้องน้ำในตัว", "ห้อง 6 : 6 ฟุต1เตียง ห้องน้ำในตัว"]}, {"id": "DV-45", "vid": 45, "bed": 6, "bath": 7, "guests": 19, "location": "ตรงข้ามหาดพัทยากลาง", "price": 8900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["-ห้องที่ 1 เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 2 เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 3 เตียง 3.5 ฟุต 2 เตียง", "-ห้องที่ 4 เตียง 3.5 ฟุต 2 เตียง", "-ห้องที่ 5 เตียง 3.5 ฟุต 1 เตียง", "เตียง 6 ฟุต 1 เตียง", "-ห้องที่ 6 เตียง 6 ฟุต 1 เตียง", "- มีห้องน้ำในตัวทุกห้อง"]}, {"id": "DV-46", "vid": 46, "bed": 6, "bath": 8, "guests": 22, "location": "ตรงข้ามหาดพัทยากลาง", "price": 9900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ทุกห้องมีห้องน้ำในตัว และมีห้องน้ำส่วนกลาง 1ห้อง (ใช้ระบบคีย์การ์ด)", "ชั้น 1 มี 2 ห้อง", "ห้อง 1: 1 เตียงใหญ่", "ห้อง 2: 1 เตียงใหญ่", "ชั้น 2 มี 4 ห้อง", "ห้อง 4: 2 เตียงเล็ก", "ห้อง 5 : 2 เตียงเล็ก", "ห้อง 6: 1 เตียงเล็ก+1เตียงใหญ่"]}, {"id": "DV-47", "vid": 47, "bed": 7, "bath": 7, "guests": 22, "location": "ตรงข้ามหาดพัทยากลาง", "price": 9900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ชั้น 1 มี 3 ห้อง", "ห้อง 1 1 เตียงใหญ่", "ห้อง 2 1 เตียงใหญ่", "ห้อง 7 1 เตียงใหญ่ อยู่ด้านอก", "ชั้น 2 มี 4 ห้อง", "ห้อง 3 1 เตียงเล็ก+1เตียงใหญ่", "ห้อง 4 2 เตียงเล็ก", "ห้อง 5 2 เตียงเล็ก"]}, {"id": "DV-48", "vid": 48, "bed": 7, "bath": 8, "guests": 22, "location": "ตรงข้ามหาดพัทยากลาง", "price": 10900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["3 ห้องเตียงคู่", "3 ห้องเตียงใหญ่", "1 ห้อง Family 6 ฟุต 1", "3 ฟุตครึง 1", "ขนาดเตียง / เตียงใหญ่ 6 ฟุต &เตียงเล็ก 3.5 ฟุต", "- ที่นอนปูพื้น 3 ฟุตหนา 2 นิ้ว มีหมอนผ้าห่ม", "- มีห้องน้ำในตัว", "(กรณีที่เสริมที่นอน ทางบ้านจะไม่ได้เสริมเข้าไปในห้องให้ ชุดที่นอนจะเอาไว้ที่ห้องโถง ลูกค้าจะนอนห้องไหนก็สามารถเข้าไปเสริมเอง)"]}, {"id": "DV-49", "vid": 49, "bed": 7, "bath": 8, "guests": 21, "location": "ตรงข้ามหาดพัทยากลาง", "price": 10900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ชั้น 1", "ห้อง1,4 เตียงใหญ่6ฟุต", "ห้อง3 เตียงคู่ 3ฟุตครึ่ง", "ชั้น 2", "ห้อง 5 เตียง เตียงใหญ่6ฟุต", "ห้อง7,8 เตียงคู่ 3ฟุตครึ่ง", "ห้อง6 เตียงใหญ่6ฟุต 1 เตียงคู่3ฟุตครึ่ง1", "(ไม่มีห้องที่ 2)"]}, {"id": "DV-50", "vid": 50, "bed": 7, "bath": 8, "guests": 21, "location": "ตรงข้ามหาดพัทยากลาง", "price": 10900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["บ้าน230", "ห้องที่ 1 6ฟุต 1 เตียง", "ห้องที่ 2 6ฟุต 1เตียง", "ห้องที่ 3 6ฟุต 1เตียง", "ห้องที่ 4 3ฟุต 2เตียง", "ห้องที่ 5 3ฟุต 2เตียง", "ห้องที่ 6 3ฟุต 1เตียง", "6ฟุต 1เตียง"]}, {"id": "DV-51", "vid": 51, "bed": 8, "bath": 9, "guests": 23, "location": "ตรงข้ามหาดพัทยากลาง", "price": 11900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["มี8ห้องนอน 9 ห้องน้ำ", "(ใช้ระบบคีย์การ์ด)", "ทุกห้องมีห้องน้ำในตัว และมีห้องน้ำส่วนกลาง 1ห้อง", "ชั้น 1 มี 4 ห้อง", "ห้อง 1 : 1 เตียงใหญ่", "ห้อง 2 : 2 เตียงเล็ก", "ห้อง 3 : 1 เตียงใหญ่", "ห้อง4 : 1 เตียงใหญ่"]}, {"id": "DV-52", "vid": 52, "bed": 7, "bath": 8, "guests": 22, "location": "ตรงข้ามหาดพัทยากลาง", "price": 10900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ห้องที่ 1 เตียง 6 ฟุต 1 เตียง", "ห้องที่ 2 เตียง 6 ฟุต 1 เตียง", "ห้องที่ 3 / 1เตียงใหญ่", "ห้องที่ 4 เตียง 3.5 ฟุต 2 เตียง", "ห้องที่ 5 เตียง 3.5 ฟุต 2 เตียง", "ห้องที่ 6 เตียง 6 ฟุต 1 เตียง / 3.5 ฟุต 1 เตียง", "ห้องที่ 7 เตียง 6ฟุต 1 เตียง", "ชั้นล่างมี 3 ห้องนอน"]}, {"id": "DV-55", "vid": 55, "bed": 5, "bath": 5, "guests": 20, "location": "หาดบางเสร่", "price": 18900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-56", "vid": 56, "bed": 16, "bath": 17, "guests": 50, "location": "ตรงข้ามหาดจอมเทียน", "price": 21900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-58", "vid": 58, "bed": 6, "bath": 7, "guests": 30, "location": "ตรงข้ามหาดนาจอมเทียน", "price": 8900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["- บ้านมี 6 ห้องนอน ห้องละ 2 เตียง เป็นเตียง 6 ฟุตครับ", "- ห้องที่ 1 เตียง 6 ฟุต 2 เตียง", "ห้องน้ำในตัว", "- ห้องที่ 2 เตียง 6 ฟุต 2 เตียง", "ห้องน้ำในตัว", "- ห้องที่ 3 เตียง 6 ฟุต 2 เตียง", "ห้องน้ำในตัว", "- ห้องที่ 4 เตียง 6 ฟุต 2 เตียง"]}, {"id": "DV-60", "vid": 60, "bed": 10, "bath": 10, "guests": 35, "location": "หาดบ้านอำเภอ", "price": 23900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-62", "vid": 62, "bed": 4, "bath": 3, "guests": 15, "location": "ตรงข้ามหาดบ้านอำเภอ", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-105", "vid": 105, "bed": 6, "bath": 6, "guests": 20, "location": "ตรงข้ามหาดนาจอมเทียน", "price": 7900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["*บ้านมี2ฝั่ง*", "ฝั่งโต๊ะปิงปอง", "-ห้องที่1 ชั้นล่างเตียง5ฟุต1เตียง ใช้ห้องน้ำรวมตรงห้องนั่งเล่น", "-ห้องที่2 ชั้นบน เตียง6ฟุต1เตียง ห้องน้ำในตัว วิวสระว่ายน้ำ", "-ห้องที่3 ชั้นบนเตียง 5ฟุต 1เตียง ใช้ห้องน้ำรวมชั้นบนที่อยู่ติดกับห้องนอน", "-ห้องที่4 ชั้นบน เตียง6ฟุต 1เตียงใช้ห้องน้ำรวมด้วยกันกับห้องที่3", "ฝั่งโต๊ะสนุ๊ก", "-ห้องที่ 5 ชั้นบน เตียง6ฟุต 2เตียง วิวสระน้ำ ห้องน้ำในตัว"]}, {"id": "DV-113", "vid": 113, "bed": 4, "bath": 4, "guests": 30, "location": "ตรงข้ามหาดบ้านอำเภอ", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-141", "vid": 141, "bed": 6, "bath": 7, "guests": 30, "location": "ตรงข้ามหาดนาจอมเทียน", "price": 8900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ชั้นล่าง จำนวน 2 ห้องนอน", "- ห้องที่ 1 เตียง 6 ฟุต 1 เตียง ห้องน้ำในตัว", "- ห้องที่ 2 เตียง 6 ฟุต 1 เตียง ห้องน้ำในตัว", "- ห้องน้ำรวม 1 ห้อง", "-ห้อง1กับห้อง2ติดสระ", "ชั้นบน จำนวน 4 ห้องนอน", "- ห้องที่ 1 เตียง 5 ฟุต 2 เตียง", "ห้องน้ำในตัว"]}, {"id": "DV-157", "vid": 157, "bed": 4, "bath": 3, "guests": 15, "location": "ตรงข้ามหาดพัทยากลาง", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-164", "vid": 164, "bed": 4, "bath": 4, "guests": 15, "location": "ตรงข้ามหาดนาจอมเทียน", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-165", "vid": 165, "bed": 8, "bath": 8, "guests": 57, "location": "ตรงข้ามหาดพัทยาเหนือ", "price": 26900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-169", "vid": 169, "bed": 4, "bath": 5, "guests": 20, "location": "หาดจอมเทียน", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-182", "vid": 182, "bed": 4, "bath": 3, "guests": 17, "location": "ตรงข้ามหาดนาจอมเทียน", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-183", "vid": 183, "bed": 4, "bath": 3, "guests": 17, "location": "ตรงข้ามหาดนาจอมเทียน", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-216", "vid": 216, "bed": 9, "bath": 10, "guests": 25, "location": "หาดพัทยาใต้", "price": 13900, "price_date": "20-22 มิ.ย. 2569", "bed_detail": ["ห้องบน 5 ห้อง", "- ห้องที่1 เตียง 5 ฟุต 1 เตียง", "ห้องมีห้องน้ำในตัว", "- ห้องที่2 เตียง 5 ฟุต 1 เตียง", "ห้องมีห้องน้ำในตัว", "- ห้องที่3 เตียง 5 ฟุต 1 เตียง", "ห้องมีห้องน้ำในตัว", "- ห้องที่4 เตียง 5 ฟุต 1 เตียง"]}, {"id": "DV-217", "vid": 217, "bed": 4, "bath": 3, "guests": 16, "location": "ตรงข้ามหาดพัทยาเหนือ", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-226", "vid": 226, "bed": 4, "bath": 5, "guests": 13, "location": "หาดเขาพระตำหนัก", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-228", "vid": 228, "bed": 4, "bath": 4, "guests": 10, "location": "หาดเขาพระตำหนัก", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-229", "vid": 229, "bed": 4, "bath": 3, "guests": 10, "location": "หาดเขาพระตำหนัก", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}, {"id": "DV-235", "vid": 235, "bed": 4, "bath": 4, "guests": 20, "location": "หาดนาจอมเทียน", "price": null, "price_date": "20-22 มิ.ย. 2569", "bed_detail": []}];
 
-<div class="grid">
-<div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/28" target="_blank">DV-28</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/28</div>
+const priceSlider = document.getElementById("priceMax");
+const bedSlider = document.getElementById("bedMin");
+const bathSlider = document.getElementById("bathMin");
+const checkInInput = document.getElementById("checkIn");
+const priceVal = document.getElementById("priceVal");
+const bedVal = document.getElementById("bedVal");
+const bathVal = document.getElementById("bathVal");
+const grid = document.getElementById("grid");
+const stats = document.getElementById("stats");
+
+// Set default date to Jun 20, 2026
+checkInInput.value = "2026-06-20";
+
+function fmt(n) { return "฿" + n.toLocaleString(); }
+
+function render() {
+  const maxPrice = parseInt(priceSlider.value);
+  const minBed = parseInt(bedSlider.value);
+  const minBath = parseInt(bathSlider.value);
+
+  priceVal.textContent = "≤ " + fmt(maxPrice);
+  bedVal.textContent = "≥ " + minBed + " ห้อง";
+  bathVal.textContent = "≥ " + minBath + " ห้อง";
+
+  const filtered = VILLAS.filter(v =>
+    (!v.price || v.price <= maxPrice) &&
+    v.bed >= minBed &&
+    v.bath >= minBath
+  );
+
+  const withPrice = filtered.filter(v => v.price);
+  const noPrice = filtered.filter(v => !v.price);
+
+  stats.innerHTML = `
+    <div class="stat"><strong>${filtered.length}</strong> ที่พัก</div>
+    <div class="stat"><strong>${withPrice.length}</strong> มีราคา</div>
+    <div class="stat ${noPrice.length ? 'none' : ''}"><strong>${noPrice.length}</strong> ไม่มีราคา (เลือกวันที่เพื่อดูราคา)</div>
+  `;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="no-results"><span>🏊</span>ไม่มีที่พักตรงเงื่อนไข<br><span style="font-size:14px;color:#555">ลองเพิ่มงบหรือลดจำนวนห้อง</span></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((v, i) => `
+    <div class="card ${v.price ? '' : 'no-price'} pop" style="animation-delay:${i*20}ms">
+      <div class="card-top">
+        <div>
+          <div class="id"><a href="https://www.pattayapartypoolvilla.com/v/${v.vid}" target="_blank">${v.id}</a></div>
+          <div class="vid">v/${v.vid}</div>
+        </div>
+        <div style="text-align:right">
+          ${v.price
+            ? `<div class="price">฿${v.price.toLocaleString()}</div><div class="price-label">2 คืน · ${v.price_date}</div>`
+            : `<div class="no-price-tag">ไม่มีราคา</div>`}
+        </div>
+      </div>
+      <div class="loc">📍 ${v.location}</div>
+      <div class="badges">
+        <div class="badge">🛏️ <strong>${v.bed}</strong><span class="u"> ห้องนอน</span></div>
+        <div class="badge">🚿 <strong>${v.bath}</strong><span class="u"> ห้องน้ำ</span></div>
+        <div class="badge">👥 <strong>${v.guests}</strong><span class="u"> คน</span></div>
+      </div>
+      ${v.bed_detail && v.bed_detail.length ? `
+      <hr class="divider">
+      <div class="beds">
+        <div class="beds-title">📋 ที่นอน</div>
+        ${v.bed_detail.slice(0,6).map(line => `<span class="bed-line">• ${line.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</span>`).join('')}
+      </div>` : ''}
+      <div class="footer">
+        <a href="https://www.pattayapartypoolvilla.com/v/${v.vid}" target="_blank">🔗 ดูรายละเอียด & จอง</a>
+        <br><a class="book-btn" href="https://www.pattayapartypoolvilla.com/v/${v.vid}" target="_blank">📅 ดูราคาตามวันที่</a>
+      </div>
     </div>
-    <div style="text-align:right;">
-      <div class="price">฿5,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> อ่างเก็บน้ำมาบประชัน</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>5</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>5</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>21</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 1 เตียง 6 ฟุต 2 เตียง/เตียง 5 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 2 เตียง 6 ฟุต ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 3 เตียง 6 ฟุต 1 เตียง / 3.5 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 4 เตียง 5 ฟุต (ห้องนอนอยู่โซนด้านหน้าบ้าน)</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 5 เตียง 5 ฟุต ห้องน้ำในตัว (ห้องนอนอยู่บริเวณโรงจอดรถ)</div><div class="bed-room"><span class="room-num">•</span>- มีเครื่องปั่นให้ครับ และอุปกรณ์ครัวพื้นฐานครบ มีครก</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/28" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/129" target="_blank">DV-129</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/129</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿5,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> หาดจอมเทียน</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>5</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>5</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>20</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 1 เตียง 6 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 2 เตียง 6 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 3 เตียง 6 ฟุต 1 เตียง 3.5 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 4 เตียง 5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 5 เตียง 5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>- มีห้องน้ำรวม 2 ห้อง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/129" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/25" target="_blank">DV-25</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/25</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿6,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>6</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>5</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>25</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 1,2 อยู่ชั้น2 : เตียง 6ฟุต 2เตียง+ห้องน้ำในตัว+ห้องแต่งต...</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 3 อยู่ชั้น2: เตียง 6ฟุต 1 เตียง +ห้องน้ำในตัว +ระเบียง</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 4อยู่ชั้น2 : เตียง 6ฟุต 1 เตียง +ห้องน้ำในตัว+ระเบียง</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 5อยู่ชั้น1: เตียง 6ฟุต 1 เตียง +ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 6อยู่ชั้นล่าง: เตียง 5 ฟุต 1 เตียง+ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ไมโครเวฟ เครื่องปิ้งขนมปัง เครื่องครัวไทยครบ เตาปิ้งแบบใช้แก๊ส แก...</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/25" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/809" target="_blank">DV-809</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/809</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿7,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดกระทิงลาย</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>5</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>4</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>20</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>- ห้องนอนที่ 2 (เตียง 5 ฟุต 1 เตียง ห้องน้ำส่วนกลาง)</div><div class="bed-room"><span class="room-num">•</span>- ห้องนอนที่ 4 และ 5 ( จะอยู่หน้าบ้าน</div><div class="bed-room"><span class="room-num">•</span>มีเตียง 5 ฟุต ห้องละ 1 เตียง ห้องน้ำใช้ด้านนอก )</div><div class="bed-room"><span class="room-num">•</span>อุปกรณ์ครัวครบครัน</div><div class="bed-room"><span class="room-num">•</span>เครื่องใช้ไฟฟ้า กาน้ำร้อน ไมโครเวฟ หม้อหุงข้าว</div><div class="bed-room"><span class="room-num">•</span>หม้อ กะทะ แก้ว ชาม</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/809" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/859" target="_blank">DV-859</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/859</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿7,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>5</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>4</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>20</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 1 6ฟุต 1 เตียง 2 ท่าน (มีห้องน้ำในตัว) ชั้นบน</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 2 6ฟุต 1 เตียง 2 ท่าน (มีห้องน้ำในตัว) ชั้นบน</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 3 6ฟุต 1 เตียง 2 ท่าน (มีห้องน้ำในตัว) ชั้นบน</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 4 6ฟุต 2 เตียง 4 ท่าน (ไม่มีห้องน้ำในตัวในกับห้องโถ่ง) ช...</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 5 อยู่ข้างล่าง</div><div class="bed-room"><span class="room-num">•</span>เตียง5ฟุต 2เตียง ใช้ห้องน้ำกับห้องรับแขก (ไม่มีห้องน้ำในตัวในกับห้อ...</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/859" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/1842" target="_blank">DV-1842</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/1842</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿7,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> หาดบางเสร่</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>5</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>3</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>15</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ห้องที่ 1 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 2 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ใช้ห้องน้ำกับห้องโถง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 3 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ใช้ห้องน้ำกับห้องโถง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/1842" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/105" target="_blank">DV-105</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/105</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿7,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดนาจอมเทียน</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>6</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>6</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>20</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>*บ้านมี2ฝั่ง*</div><div class="bed-room"><span class="room-num">•</span>ฝั่งโต๊ะปิงปอง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่1 ชั้นล่างเตียง5ฟุต1เตียง ใช้ห้องน้ำรวมตรงห้องนั่งเล่น</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่3 ชั้นบนเตียง 5ฟุต 1เตียง ใช้ห้องน้ำรวมชั้นบนที่อยู่ติดกับห...</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่4 ชั้นบน เตียง6ฟุต 1เตียงใช้ห้องน้ำรวมด้วยกันกับห้องที่3</div><div class="bed-room"><span class="room-num">•</span>ฝั่งโต๊ะสนุ๊ก</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/105" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/44" target="_blank">DV-44</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/44</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿8,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>6</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>7</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>19</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ชั้น 1 มี 2 ห้อง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 1 : 6 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>ห้อง 2 : 6 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>ชั้น 2 มี 4 ห้อง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 3 : 3.5 ฟุต 2 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>ห้อง 4 : 3.5 ฟุต 2 เตียง ห้องน้ำในตัว</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/44" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/45" target="_blank">DV-45</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/45</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿8,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>6</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>7</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>19</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 1 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 2 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 3 เตียง 3.5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 4 เตียง 3.5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 5 เตียง 3.5 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>เตียง 6 ฟุต 1 เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/45" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/58" target="_blank">DV-58</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/58</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿8,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดนาจอมเทียน</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>6</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>7</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>30</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>- บ้านมี 6 ห้องนอน ห้องละ 2 เตียง เป็นเตียง 6 ฟุตครับ</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 1 เตียง 6 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 2 เตียง 6 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 3 เตียง 6 ฟุต 2 เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/58" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/141" target="_blank">DV-141</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/141</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿8,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดนาจอมเทียน</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>6</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>7</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>30</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ชั้นล่าง จำนวน 2 ห้องนอน</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 1 เตียง 6 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 2 เตียง 6 ฟุต 1 เตียง ห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องน้ำรวม 1 ห้อง</div><div class="bed-room"><span class="room-num">•</span>ชั้นบน จำนวน 4 ห้องนอน</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่ 1 เตียง 5 ฟุต 2 เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/141" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/726" target="_blank">DV-726</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/726</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿9,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> หาดกระทิงลาย</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>5</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>6</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>18</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ห้อง 2 ชั้นล่าง 6ฟุต1 3ฟุตครึ่ง 1</div><div class="bed-room"><span class="room-num">•</span>ห้องใหญ่ที่3ชั้นบน 6ฟุต1 3ฟุตครึ่ง 2</div><div class="bed-room"><span class="room-num">•</span>ห้องกลางที่4 6ฟุต 1 3ฟุตครึ่ง 1</div><div class="bed-room"><span class="room-num">•</span>ห้องที่5สุดท้ายชั้นบน 6ฟุต1 3ฟุตครึ่ง1</div><div class="bed-room"><span class="room-num">•</span>-มีห้องน้ำในตัวทุกห้อง-</div><div class="bed-room"><span class="room-num">•</span>อุปกรณ์ครัวมีครบ</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/726" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/9" target="_blank">DV-9</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/9</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿9,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดนาจอมเทียน</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>6</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>6</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>24</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ชั้นล่าง มี 1 ห้องนอน</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 1</div><div class="bed-room"><span class="room-num">•</span>-เตียงขนาด 6 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องน้ำหน้าห้องนอน</div><div class="bed-room"><span class="room-num">•</span>ชั้นบน มี 5 ห้องนอน</div><div class="bed-room"><span class="room-num">•</span>ห้องนอนที่ 2</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/9" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/42" target="_blank">DV-42</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/42</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿9,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>7</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>8</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>22</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ชั้นล่าง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 1 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 2 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 3 เตียง 3.5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>ชั้นบน</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 4 เตียง 6 ฟุต 1 เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/42" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/43" target="_blank">DV-43</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/43</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿9,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>7</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>8</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>22</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 1 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 2 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 3 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 4 เตียง 3.5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 5 เตียง 3.5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องที่ 6 เตียง 3.5 ฟุต 1 เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/43" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/46" target="_blank">DV-46</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/46</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿9,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>6</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>8</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>22</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ทุกห้องมีห้องน้ำในตัว และมีห้องน้ำส่วนกลาง 1ห้อง (ใช้ระบบคีย์การ์ด)</div><div class="bed-room"><span class="room-num">•</span>ชั้น 1 มี 2 ห้อง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 1: 1 เตียงใหญ่</div><div class="bed-room"><span class="room-num">•</span>ห้อง 2: 1 เตียงใหญ่</div><div class="bed-room"><span class="room-num">•</span>ชั้น 2 มี 4 ห้อง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 4: 2 เตียงเล็ก</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/46" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/47" target="_blank">DV-47</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/47</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿9,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>7</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>7</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>22</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ชั้น 1 มี 3 ห้อง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 1 1 เตียงใหญ่</div><div class="bed-room"><span class="room-num">•</span>ห้อง 2 1 เตียงใหญ่</div><div class="bed-room"><span class="room-num">•</span>ห้อง 7 1 เตียงใหญ่ อยู่ด้านอก</div><div class="bed-room"><span class="room-num">•</span>ชั้น 2 มี 4 ห้อง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 3 1 เตียงเล็ก+1เตียงใหญ่</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/47" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/716" target="_blank">DV-716</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/716</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿10,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> หาดจอมเทียน</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>5</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>5</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>20</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>เสริมได้ถึง 20 ครับ แต่ เกิน 17 อาจจะเบียดหน่อย</div><div class="bed-room"><span class="room-num">•</span>ห้อง 1-3 มี เตียง6 ฟุต 1 เตียง+ เตียง 3.5 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 4 มีเตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 5 มีเตียง 5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องน้ำในตัวทุกห้อง ห้องนั่งเล่นใช้ห้องน้ำร่วมกับห้องนอน</div><div class="bed-room"><span class="room-num">•</span>และมีห้องน้ำด้านนอกอีก 1 ห้อง เป็นห้องน้ำส่วนกลาง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/716" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/48" target="_blank">DV-48</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/48</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿10,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>7</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>8</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>22</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>3 ห้องเตียงคู่</div><div class="bed-room"><span class="room-num">•</span>3 ห้องเตียงใหญ่</div><div class="bed-room"><span class="room-num">•</span>1 ห้อง Family 6 ฟุต 1</div><div class="bed-room"><span class="room-num">•</span>3 ฟุตครึง 1</div><div class="bed-room"><span class="room-num">•</span>ขนาดเตียง / เตียงใหญ่ 6 ฟุต &เตียงเล็ก 3.5 ฟุต</div><div class="bed-room"><span class="room-num">•</span>- ที่นอนปูพื้น 3 ฟุตหนา 2 นิ้ว มีหมอนผ้าห่ม</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/48" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/49" target="_blank">DV-49</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/49</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿10,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>7</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>8</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>21</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ชั้น 1</div><div class="bed-room"><span class="room-num">•</span>ห้อง1,4 เตียงใหญ่6ฟุต</div><div class="bed-room"><span class="room-num">•</span>ห้อง3 เตียงคู่ 3ฟุตครึ่ง</div><div class="bed-room"><span class="room-num">•</span>ชั้น 2</div><div class="bed-room"><span class="room-num">•</span>ห้อง 5 เตียง เตียงใหญ่6ฟุต</div><div class="bed-room"><span class="room-num">•</span>ห้อง7,8 เตียงคู่ 3ฟุตครึ่ง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/49" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/50" target="_blank">DV-50</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/50</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿10,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>7</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>8</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>21</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>บ้าน230</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 1 6ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 2 6ฟุต 1เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 3 6ฟุต 1เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 4 3ฟุต 2เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 5 3ฟุต 2เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/50" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/52" target="_blank">DV-52</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/52</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿10,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>7</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>8</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>22</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ห้องที่ 1 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 2 เตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 3 / 1เตียงใหญ่</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 4 เตียง 3.5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 5 เตียง 3.5 ฟุต 2 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องที่ 6 เตียง 6 ฟุต 1 เตียง / 3.5 ฟุต 1 เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/52" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/729" target="_blank">DV-729</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/729</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿11,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> อ่างเก็บน้ำมาบประชัน</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>8</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>8</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>50</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>-ห้องนอนที่ 1 มีเตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องนอนที่ 2 มีเตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องนอนที่ 3 มีเตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องนอนที่ 4 มีเตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องนอนที่ 5 มีเตียง 6 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>-ห้องนอนที่ 6 มีเตียง 6 ฟุต 1 เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/729" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/51" target="_blank">DV-51</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/51</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿11,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> ตรงข้ามหาดพัทยากลาง</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>8</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>9</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>23</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>มี8ห้องนอน 9 ห้องน้ำ</div><div class="bed-room"><span class="room-num">•</span>(ใช้ระบบคีย์การ์ด)</div><div class="bed-room"><span class="room-num">•</span>ทุกห้องมีห้องน้ำในตัว และมีห้องน้ำส่วนกลาง 1ห้อง</div><div class="bed-room"><span class="room-num">•</span>ชั้น 1 มี 4 ห้อง</div><div class="bed-room"><span class="room-num">•</span>ห้อง 1 : 1 เตียงใหญ่</div><div class="bed-room"><span class="room-num">•</span>ห้อง 2 : 2 เตียงเล็ก</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/51" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div><div class="card">
-  <div class="card-top">
-    <div>
-      <div class="villa-id"><a href="https://www.pattayapartypoolvilla.com/v/216" target="_blank">DV-216</a></div>
-      <div style="font-size:11px;color:#555;margin-top:2px;">v/216</div>
-    </div>
-    <div style="text-align:right;">
-      <div class="price">฿13,900</div>
-      <div class="price-label">2 คืน</div>
-    </div>
-  </div>
-  <div class="card-location"><span>📍</span> หาดพัทยาใต้</div>
-  <div class="card-beds">
-    <div class="badge">🛏️ <strong>9</strong><span class="badge-unit"> ห้องนอน</span></div>
-    <div class="badge">🚿 <strong>10</strong><span class="badge-unit"> ห้องน้ำ</span></div>
-    <div class="badge">👥 <strong>25</strong><span class="badge-unit"> คน</span></div>
-  </div>
-  <hr class="divider">
-  <div class="bed-section">
-    <div class="bed-title">📋 จำนวนที่นอน</div>
-    <div class="bed-list"><div class="bed-room"><span class="room-num">•</span>ห้องบน 5 ห้อง</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่1 เตียง 5 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องมีห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่2 เตียง 5 ฟุต 1 เตียง</div><div class="bed-room"><span class="room-num">•</span>ห้องมีห้องน้ำในตัว</div><div class="bed-room"><span class="room-num">•</span>- ห้องที่3 เตียง 5 ฟุต 1 เตียง</div></div>
-  </div>
-  <div class="card-footer">
-    <a href="https://www.pattayapartypoolvilla.com/v/216" target="_blank">🔗 ดูรายละเอียด & จอง</a>
-  </div>
-</div></div>
-<div class="note">
-  📌 ราคาจาก calendar UI ณ วันที่ 20-22 มิถุนายน 2569 (2 คืน) · ดึงข้อมูลอัตโนมัติจาก pattayapartypoolvilla.com<br>
-  ⚠️ ราคาอาจเปลี่ยนแปลงตามช่วงเวลา · ค่าประกัน 3,000 บาท + ค่าคนเกิน 300 บาท/คน/คืน ไม่รวมในราคา
-</div>
+  `).join('');
+}
+
+priceSlider.addEventListener("input", render);
+bedSlider.addEventListener("input", render);
+bathSlider.addEventListener("input", render);
+
+render();
+</script>
 </body>
 </html>
