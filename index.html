@@ -23,6 +23,18 @@ body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0f1923; color: 
 .ctrl select, .ctrl input[type="date"] { background: #151d28; border: 1px solid #2a3a4a; border-radius: 8px; color: #e8eaed; padding: 8px 12px; font-size: 14px; }
 .ctrl input[type="date"] { color-scheme: dark; }
 
+
+.sort-section { margin-top: 14px; padding-top: 14px; border-top: 1px solid #2a3a4a; }
+.sort-label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+.sort-items { display: flex; flex-wrap: wrap; gap: 8px; }
+.sort-item { display: flex; align-items: center; gap: 5px; background: #151d28; border: 1px solid #2a3a4a; border-radius: 6px; padding: 5px 10px; cursor: pointer; transition: border-color 0.15s; user-select: none; }
+.sort-item:hover { border-color: #3a4a5a; }
+.sort-item input[type="checkbox"] { accent-color: #00d4aa; cursor: pointer; width: 14px; height: 14px; }
+.sort-item select { background: #1a2332; border: 1px solid #2a3a4a; border-radius: 4px; color: #e8eaed; font-size: 11px; padding: 2px 4px; cursor: pointer; }
+.sort-item .sort-key { font-size: 12px; color: #aaa; }
+.sort-item.active { border-color: #00d4aa; background: #00d4aa11; }
+.sort-item.active .sort-key { color: #00d4aa; }
+.sort-note { font-size: 10px; color: #444; margin-top: 6px; }
 .stats { display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap; }
 .stat { background: #151d28; border-radius: 8px; padding: 8px 16px; font-size: 13px; }
 .stat strong { color: #00d4aa; }
@@ -101,6 +113,42 @@ body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #0f1923; color: 
         <div class="range-hint">เลือกวันที่ต้องการ</div>
       </div>
     </div>
+
+    <div class="sort-section">
+      <div class="sort-label">⬆️ เรียงลำดับ (เลือกได้หลายอย่าง)</div>
+      <div class="sort-items">
+        <label class="sort-item" id="sort-item-price">
+          <input type="checkbox" id="sort-price" data-key="price">
+          <select id="sort-price-dir">
+            <option value="asc">ราคา ↑ ต่ำ→สูง</option>
+            <option value="desc">ราคา ↓ สูง→ต่ำ</option>
+          </select>
+        </label>
+        <label class="sort-item" id="sort-item-bed">
+          <input type="checkbox" id="sort-bed" data-key="bed">
+          <select id="sort-bed-dir">
+            <option value="desc">ห้องนอน ↑ มาก→น้อย</option>
+            <option value="asc">ห้องนอน ↓ น้อย→มาก</option>
+          </select>
+        </label>
+        <label class="sort-item" id="sort-item-bath">
+          <input type="checkbox" id="sort-bath" data-key="bath">
+          <select id="sort-bath-dir">
+            <option value="desc">ห้องน้ำ ↑ มาก→น้อย</option>
+            <option value="asc">ห้องน้ำ ↓ น้อย→มาก</option>
+          </select>
+        </label>
+        <label class="sort-item" id="sort-item-guests">
+          <input type="checkbox" id="sort-guests" data-key="guests">
+          <select id="sort-guests-dir">
+            <option value="desc">คน ↑ มาก→น้อย</option>
+            <option value="asc">คน ↓ น้อย→มาก</option>
+          </select>
+        </label>
+      </div>
+      <div class="sort-note">✓ เลือกหลายอันเพื่อเรียงแบบหลายเงื่อนไข (ลำดับบน = ใช้ก่อน)</div>
+    </div>
+
     <div class="stats" id="stats"></div>
   </div>
 
@@ -119,6 +167,50 @@ const bedVal = document.getElementById("bedVal");
 const bathVal = document.getElementById("bathVal");
 const grid = document.getElementById("grid");
 const stats = document.getElementById("stats");
+
+// Sort controls
+const sortPrice = document.getElementById("sort-price");
+const sortBed = document.getElementById("sort-bed");
+const sortBath = document.getElementById("sort-bath");
+const sortGuests = document.getElementById("sort-guests");
+const sortPriceDir = document.getElementById("sort-price-dir");
+const sortBedDir = document.getElementById("sort-bed-dir");
+const sortBathDir = document.getElementById("sort-bath-dir");
+const sortGuestsDir = document.getElementById("sort-guests-dir");
+
+// Sort config: checkbox + direction select
+const SORT_KEYS = [
+  { cb: sortPrice, dir: sortPriceDir, key: 'price' },
+  { cb: sortBed,   dir: sortBedDir,   key: 'bed' },
+  { cb: sortBath,  dir: sortBathDir,  key: 'bath' },
+  { cb: sortGuests,dir: sortGuestsDir,key: 'guests' },
+];
+
+// Active sort = [{key, dir}, ...] in user-selected order
+function getActiveSort() {
+  const active = [];
+  SORT_KEYS.forEach(({ cb, dir, key }) => {
+    if (cb && cb.checked) {
+      active.push({ key, dir: dir.value });
+    }
+  });
+  return active;
+}
+
+function multiSort(arr, sortConfig) {
+  if (!sortConfig.length) return arr;
+  return [...arr].sort((a, b) => {
+    for (const { key, dir } of sortConfig) {
+      const va = a[key] ?? (dir === 'asc' ? Infinity : -Infinity);
+      const vb = b[key] ?? (dir === 'asc' ? Infinity : -Infinity);
+      let cmp = 0;
+      if (va < vb) cmp = -1;
+      else if (va > vb) cmp = 1;
+      if (cmp !== 0) return dir === 'asc' ? cmp : -cmp;
+    }
+    return 0;
+  });
+}
 
 // Set default date to Jun 20, 2026
 checkInInput.value = "2026-06-20";
@@ -140,8 +232,12 @@ function render() {
     v.bath >= minBath
   );
 
-  const withPrice = filtered.filter(v => v.price);
-  const noPrice = filtered.filter(v => !v.price);
+  // Apply multi-key sort
+  const sortConfig = getActiveSort();
+  const sorted = sortConfig.length ? multiSort(filtered, sortConfig) : filtered;
+
+  const withPrice = sorted.filter(v => v.price);
+  const noPrice = sorted.filter(v => !v.price);
 
   stats.innerHTML = `
     <div class="stat"><strong>${filtered.length}</strong> ที่พัก</div>
@@ -154,7 +250,7 @@ function render() {
     return;
   }
 
-  grid.innerHTML = filtered.map((v, i) => `
+  grid.innerHTML = sorted.map((v, i) => `
     <div class="card ${v.price ? '' : 'no-price'} pop" style="animation-delay:${i*20}ms">
       <div class="card-top">
         <div>
@@ -190,6 +286,24 @@ function render() {
 priceSlider.addEventListener("input", render);
 bedSlider.addEventListener("input", render);
 bathSlider.addEventListener("input", render);
+
+// Sort listeners
+SORT_KEYS.forEach(({ cb, dir }) => {
+  if (cb) cb.addEventListener('change', render);
+  if (dir) dir.addEventListener('change', render);
+});
+
+// Style active sort items
+function updateSortStyle() {
+  SORT_KEYS.forEach(({ cb, key }) => {
+    const item = document.getElementById('sort-item-' + key);
+    if (item) item.classList.toggle('active', cb && cb.checked);
+  });
+}
+SORT_KEYS.forEach(({ cb }) => {
+  if (cb) cb.addEventListener('change', updateSortStyle);
+});
+updateSortStyle();
 
 render();
 </script>
